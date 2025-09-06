@@ -1,0 +1,100 @@
+[
+  {
+    "id": "c001",
+    "title": "正月十五元宵灯会",
+    "summary": "张灯结彩、民俗巡游、猜灯谜与舞狮舞龙，热闹迎春。",
+    "dateRule": "农历正月十五",
+    "month": 2,
+    "season": "春",
+    "location": "华县老街、城隍庙广场",
+    "tags": ["灯会", "民俗巡游", "非遗表演"],
+    "cover": "/images/customs/lantern.jpg",
+    "markdown": "/content/customs/c001.md",
+    "images": [
+      "/images/customs/lantern_1.jpg",
+      "/images/customs/lantern_2.jpg",
+      "/images/customs/lantern_3.jpg"
+    ],
+    "video": "/videos/customs/c001.mp4"
+  },
+  {
+    "id": "c002",
+    "title": "二月二龙抬头",
+    "summary": "剃龙头、吃春饼，祈盼万物生长、风调雨顺。",
+    "dateRule": "农历二月初二",
+    "month": 3,
+    "season": "春",
+    "location": "各乡镇社区",
+    "tags": ["剃龙头", "节令美食"],
+    "cover": "/images/customs/dragon_head.jpg",
+    "markdown": "/content/customs/c002.md",
+    "images": [
+      "/images/customs/dragon_head_1.jpg",
+      "/images/customs/dragon_head_2.jpg"
+    ]
+  },
+  {
+    "id": "c003",
+    "title": "清明踏青与扫墓",
+    "summary": "缅怀先人、踏青赏春两相宜。",
+    "dateRule": "公历4月4-6日（清明节前后）",
+    "month": 4,
+    "season": "春",
+    "location": "陵园、公墓与郊野",
+    "tags": ["扫墓", "踏青"],
+    "cover": "/images/customs/qingming.jpg",
+    "markdown": "/content/customs/c003.md"
+  },
+  {
+    "id": "c004",
+    "title": "端午龙舟与艾草门符",
+    "summary": "赛龙舟、挂艾草、包粽子，祛病防疫。",
+    "dateRule": "农历五月初五",
+    "month": 6,
+    "season": "夏",
+    "location": "滨河公园及沿河社区",
+    "tags": ["赛龙舟", "艾草", "粽子"],
+    "cover": "/images/customs/duanwu.jpg",
+    "markdown": "/content/customs/c004.md",
+    "images": [
+      "/images/customs/duanwu_1.jpg",
+      "/images/customs/duanwu_2.jpg"
+    ]
+  },
+  {
+    "id": "c005",
+    "title": "七夕乞巧",
+    "summary": "穿针引线拜织女，寄托对美好姻缘的向往。",
+    "dateRule": "农历七月初七",
+    "month": 8,
+    "season": "夏",
+    "location": "社区与家庭",
+    "tags": ["乞巧", "拜织女"],
+    "cover": "/images/customs/qixi.jpg",
+    "markdown": "/content/customs/c005.md"
+  },
+  {
+    "id": "c006",
+    "title": "中秋赏月与博饼",
+    "summary": "阖家团圆，共赏明月，食月饼，部分地区举行博饼。",
+    "dateRule": "农历八月十五",
+    "month": 9,
+    "season": "秋",
+    "location": "广场与家庭",
+    "tags": ["赏月", "月饼", "博饼"],
+    "cover": "/images/customs/zhongqiu.jpg",
+    "markdown": "/content/customs/c006.md"
+  },
+  {
+    "id": "c007",
+    "title": "重阳登高与敬老",
+    "summary": "佩戴茱萸、登高望远，敬老祈福，适宜秋游。",
+    "dateRule": "农历九月初九",
+    "month": 10,
+    "season": "秋",
+    "location": "山头、公园",
+    "tags": ["登高", "敬老"],
+    "cover": "/images/customs/chongyang.jpg",
+    "markdown": "/content/customs/c007.md"
+  }
+]

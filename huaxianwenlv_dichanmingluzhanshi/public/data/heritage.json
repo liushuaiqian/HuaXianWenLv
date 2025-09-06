@@ -1,0 +1,122 @@
+[
+  {
+    "id": "h001",
+    "title": "华县皮影戏",
+    "summary": "以精湛雕刻与灯影表演闻名的传统戏曲艺术，承载着地方历史与民俗。",
+    "category": "表演艺术",
+    "region": "华州区",
+    "era": "清末",
+    "level": "省级",
+    "tags": ["皮影", "戏曲", "雕刻"],
+    "cover": "/img/thumb-1.svg",
+    "images": [
+      { "src": "/img/thumb-1.svg", "alt": "皮影戏演出" }
+    ],
+    "description": "华县皮影戏以精细刀功与独特唱腔著称，演出时通过灯光投射，人物灵动，栩栩如生。"
+  },
+  {
+    "id": "h002",
+    "title": "木版年画",
+    "summary": "在新年张贴的吉祥画作，具有驱邪纳福的民俗寓意。",
+    "category": "传统美术",
+    "region": "华阴市",
+    "era": "明清",
+    "level": "市级",
+    "tags": ["年俗", "版画"],
+    "cover": "/img/thumb-1.svg",
+    "images": [
+      { "src": "/img/thumb-1.svg", "alt": "木版年画作品" }
+    ],
+    "description": "华阴木版年画以鲜明的色彩与夸张的造型表达祈福愿景，是地域特色鲜明的民间艺术。"
+  },
+  {
+    "id": "h003",
+    "title": "传统酿醋技艺",
+    "summary": "沿袭古法的粮食发酵与陈酿工序，形成独特香气与口味。",
+    "category": "传统技艺",
+    "region": "潼关县",
+    "era": "宋元",
+    "level": "省级",
+    "tags": ["发酵", "饮食文化"],
+    "cover": "/img/thumb-1.svg",
+    "images": [
+      { "src": "/img/thumb-1.svg", "alt": "传统酿醋作坊" }
+    ],
+    "description": "采用固态发酵配合长周期陈酿，口感醇厚，酸香平衡。"
+  },
+  {
+    "id": "h004",
+    "title": "剪纸艺术",
+    "summary": "以剪刀或刻刀在纸张上进行镂空造型，常用于节庆装饰。",
+    "category": "传统美术",
+    "region": "合阳县",
+    "era": "民国",
+    "level": "县级",
+    "tags": ["节庆", "装饰"],
+    "cover": "/img/thumb-1.svg",
+    "images": [
+      { "src": "/img/thumb-1.svg", "alt": "窗花剪纸" }
+    ],
+    "description": "题材广泛，从花鸟鱼虫到戏曲人物，讲究构图对称与线条流畅。"
+  },
+  {
+    "id": "h005",
+    "title": "古法造纸",
+    "summary": "以植物纤维为原料，经蒸煮、捣浆、抄纸等工序制成纸张。",
+    "category": "传统技艺",
+    "region": "大荔县",
+    "era": "汉唐",
+    "level": "省级",
+    "tags": ["手工", "造纸"],
+    "cover": "/img/thumb-1.svg",
+    "images": [
+      { "src": "/img/thumb-1.svg", "alt": "古法抄纸" }
+    ],
+    "description": "纤维分布均匀、纸面细腻，常用于书画装裱与文物修复。"
+  },
+  {
+    "id": "h006",
+    "title": "传统窑烧陶艺",
+    "summary": "以柴窑还原气氛形成自然窑变釉色，器型古朴。",
+    "category": "传统技艺",
+    "region": "澄城县",
+    "era": "元明",
+    "level": "市级",
+    "tags": ["陶瓷", "手作"],
+    "cover": "/img/thumb-1.svg",
+    "images": [
+      { "src": "/img/thumb-1.svg", "alt": "窑烧出窑" }
+    ],
+    "description": "遵循土、火、时三者协调，追求自然釉色与器物神韵。"
+  },
+  {
+    "id": "h007",
+    "title": "传统面塑",
+    "summary": "以面团为材料捏塑人物与动植物形象，色彩丰富。",
+    "category": "传统美术",
+    "region": "蒲城县",
+    "era": "清代",
+    "level": "县级",
+    "tags": ["手工艺", "民俗"],
+    "cover": "/img/thumb-1.svg",
+    "images": [
+      { "src": "/img/thumb-1.svg", "alt": "面塑作品" }
+    ],
+    "description": "造型夸张生动，常见于庙会与节庆活动中，寓意吉祥。"
+  },
+  {
+    "id": "h008",
+    "title": "民歌与号子",
+    "summary": "劳动与生活中形成的口头音乐传统，旋律质朴。",
+    "category": "传统音乐",
+    "region": "临渭区",
+    "era": "近现代",
+    "level": "市级",
+    "tags": ["音乐", "口传"],
+    "cover": "/img/thumb-1.svg",
+    "images": [
+      { "src": "/img/thumb-1.svg", "alt": "民歌表演" }
+    ],
+    "description": "歌词贴近生活，节奏明快，富有地方语言特色。"
+  }
+]

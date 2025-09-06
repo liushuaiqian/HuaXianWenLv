@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Vegetables">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffe29f"/>
+      <stop offset="1" stop-color="#ffa99f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <circle cx="360" cy="400" r="160" fill="#ff7a59"/>
+  <ellipse cx="610" cy="460" rx="260" ry="160" fill="#7bc96f"/>
+  <ellipse cx="820" cy="360" rx="200" ry="120" fill="#a0d468"/>
+  <text x="50%" y="90%" dominant-baseline="middle" text-anchor="middle" font-size="48" font-family="Inter, Segoe UI, Arial" fill="#2f2f2f" opacity=".8">Hero Placeholder</text>
+</svg>

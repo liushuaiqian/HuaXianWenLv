@@ -1,0 +1,7 @@
+[
+  { "id": "m1", "src": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80&auto=format", "w": 1200, "h": 800, "alt": "mountain" },
+  { "id": "m2", "src": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80&auto=format", "w": 1200, "h": 1600, "alt": "lake" },
+  { "id": "m3", "src": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80&auto=format", "w": 1200, "h": 800, "alt": "forest" },
+  { "id": "m4", "src": "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1200&q=80&auto=format", "w": 1200, "h": 800, "alt": "road" },
+  { "id": "m5", "src": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=80&auto=format", "w": 1200, "h": 1600, "alt": "peak" }
+]

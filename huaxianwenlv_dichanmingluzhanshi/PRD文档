@@ -1,0 +1,483 @@
+文档信息
+    项目名称：地方文旅展示站点（地方文化·风俗·非遗）
+    版本：v1.0
+    面向对象：PM、设计、前端（Vue3）、内容编辑、测试
+    约束：纯前端，无数据库和后端服务；静态资源（图片/视频/JSON/Markdown）；多页面（多路由）
+    技术指定：Vue 3 + Vite 开发
+
+一、愿景与目标
+    愿景：通过高质感的网页，展示某地方的文化、风俗、非遗及相关图文/视频素材，形成对外宣传与内部汇报的可视化演示。
+    
+    成功标准
+        浏览者能在3分钟内了解地方文化概况与重点非遗项目。
+        关键页面 Lighthouse 评分：Performance ≥ 90、SEO ≥ 90、Accessibility ≥ 90。
+        首屏 LCP ≤ 2.5s（3G 快速模拟），CLS ≤ 0.1，JS 体积 ≤ 250KB（gzip）基础包。
+
+二、范围与非目标
+    包含
+        多页面（路由）信息展示：文化概况、风俗节庆、非遗名录、图集视频、多媒体详情页等。
+        客户端搜索/筛选（本地 JSON 数据），图片灯箱、视频播放、时间轴、地图（可选）。
+        分享（Web Share API + 复制链接）、本地收藏（localStorage，可选）。
+    
+    不包含
+        用户登录/注册、线上评论、服务端接口/数据库。
+        电商/票务/预订。
+        复杂可视化图表（可留作后续版本）。
+
+三、用户画像与场景
+    画像
+        文旅部门宣传人员：用于活动展陈、路演、会议大屏演示。
+        外地游客：了解当地文化亮点与必看非遗项目。
+        教育/研学机构：浏览历史沿革、图文资料。
+    
+    关键场景
+        PC 大屏/投影：自动播放轮播视频与精选图集。
+        移动端：随手搜索某项非遗、查看地址与简介、分享链接。
+
+四、信息架构（IA）与站点地图
+    顶部导航一级结构
+        首页（/）
+        文化概况（/culture）
+        风俗节庆（/customs）
+        非遗名录（/heritage）
+        图文与视频（/media）
+        地图与路线（可选，/map）
+        关于与致谢（/about）
+    
+    详情页
+        非遗详情：/heritage/:id
+        风俗节庆详情：/customs/:id
+        媒体详情（可选）：/media/:id
+
+五、页面与路由（详细需求）
+    首页（/）
+        模块
+            英雄横幅：视频或大图（自动静音循环、可暂停）、标题口号、引导按钮。
+            文化亮点卡片（3-6项）：跳转到对应页面。
+            精选非遗滑动列表：卡片含封面、称号、地区、标签；支持滚动加载/懒加载。
+            精选视频与图集：可灯箱预览或打开详情页。
+            页脚：版权、使用许可、社媒分享。
+        
+        SEO
+            Title：XX地方文旅展示 | 文化·风俗·非遗
+            Description：XX地方文化概况与非遗精选展示，图文视频一站式浏览。
+
+    文化概况（/culture）
+        模块
+            地域与历史沿革：时间轴组件（里程碑年份+事件+图片）。
+            文化分区或主题：图文卡栅格。
+            代表性元素：美食、服饰、工艺等简述。
+            可选：内嵌地图标注重要文化地标（轻量 Leaflet）。
+        
+        SEO
+            Title：XX文化概况 | 历史沿革与文化主题
+
+    风俗节庆（/customs）
+        模块
+            顶部筛选：按月份/季节/类型筛选。
+            列表卡片：封面、标题、时间、地点、简介、标签。
+            详情页（/customs/:id）：详细介绍、流程、寓意、图片/视频、最佳观赏时间/地点、交通建议（文本）。
+        
+        SEO
+            Title：XX风俗与节庆 | 年度活动日历
+        
+        验收点
+            Fuzzy 搜索关键词（如"正月""灯会"）可命中。
+            月份筛选变更时，列表实时更新，无整页刷新。
+
+    非遗名录（/heritage）
+        模块
+            顶部检索：关键词 + 分类（一级：口头传统、表演艺术、社会实践、自然与宇宙、传统手工艺；二级自定义）。
+            筛选：地区（辖区/街道）、时代（年代段）、级别（国家级/省级/市级）。
+            列表：卡片显示称号、级别、传承人（如有）、地点。
+            详情页（/heritage/:id）：图文、工艺流程、传承谱系（树/列表）、地理坐标（可嵌地图标点）、多媒体、延伸阅读。
+        
+        SEO
+            Title：XX非物质文化遗产名录 | 项目详情
+        
+        验收点
+            列表分页或无限滚动；切换筛选项需保留在 URL Query 以便分享/回访状态恢复。
+
+    图文与视频（/media）
+        模块
+            Tab：图集 / 视频。
+            图集：瀑布流/均匀网格，点击放大（灯箱），左右切换，支持键盘 ESC 退出。
+            视频：播放器（控制条、倍速、字幕 SRT/VTT 可选）、封面占位，懒加载。
+            媒体详情（可选 /media/:id）：图/视频 + 描述 + 关联内容（相关非遗/风俗）。
+        
+        SEO
+            Title：XX地方影像库 | 图集与视频
+
+    地图与路线（可选 /map）
+        模块
+            OSM + Leaflet：标注非遗点位与风俗活动场地。
+            交互：按分类/标签显示与隐藏；点击标注弹出信息卡。
+        
+        验收点
+            离线无地图（可提示），不影响其他页面浏览。
+
+    关于与致谢（/about）
+        模块
+            项目背景、主办/协办、素材来源与版权声明、开源许可（如有）。
+            联系方式或二维码（图片）。
+        
+        SEO
+            Title：关于本项目 | 致谢与版权
+
+六、全局功能需求
+    站内搜索：基于 fuse.js 的本地模糊搜索，范围覆盖 非遗、风俗、媒体 标题与标签。
+    过滤与排序：客户端完成，变更映射到 URL Query。
+    
+    多媒体
+        图片：WebP 优先、懒加载、Lightbox、高清图延迟加载。
+        视频：HTML5 <video> + Plyr.js（或原生控件），支持海报图、静音自动播放（仅首页英雄位）。
+    
+    分享：Web Share API，可回退为复制链接；OG/OpenGraph 元信息完善。
+    收藏（可选）：localStorage 收藏列表（非遗/风俗），可一键查看与清空。
+    主题风格：浅色/深色模式切换（可选，prefers-color-scheme）。
+    响应式：移动优先，断点 sm/md/lg/xl，移动端导航收起。
+
+七、内容模型与数据结构（无数据库）
+    存储位置
+        /public/data/*.json：结构化数据（非遗、风俗、标签、分类、地理坐标）
+        /public/media/：图片与视频
+        /content/*.md：长文说明（可选，使用 markdown-it 或简单渲染）
+    
+    数据示例
+        heritage.json
+            [
+                {
+                    "id": "h001",
+                    "title": "XX木版年画",
+                    "level": "国家级",
+                    "category": ["传统手工艺"],
+                    "region": "XX市XX区",
+                    "tags": ["年节", "木版"],
+                    "summary": "源于明清的年画工艺……",
+                    "descriptionMd": "/content/heritage/h001.md",
+                    "images": [
+                        {"src": "/media/heritage/h001/cover.webp", "alt": "木版年画成品"},
+                        {"src": "/media/heritage/h001/process1.webp", "alt": "雕版过程"}
+                    ],
+                    "video": {
+                        "src": "/media/heritage/h001/intro.mp4",
+                        "poster": "/media/heritage/h001/poster.webp",
+                        "subtitles": "/media/heritage/h001/sub.vtt"
+                    },
+                    "location": {
+                        "lat": 30.123,
+                        "lng": 120.123,
+                        "address": "XX街道XX号"
+                    },
+                    "era": "明清",
+                    "inheritors": ["张三", "李四"],
+                    "related": {
+                        "customsIds": ["c008"],
+                        "mediaIds": ["m102"]
+                    }
+                }
+            ]
+        
+        customs.json
+            [
+                {
+                    "id": "c001",
+                    "title": "XX灯会",
+                    "dateRule": "每年正月十五",
+                    "season": "春",
+                    "location": "XX广场",
+                    "tags": ["花灯", "民俗"],
+                    "summary": "以花灯巡游为主……",
+                    "descriptionMd": "/content/customs/c001.md",
+                    "images": [
+                        {"src": "/media/customs/c001/cover.webp", "alt": "花灯巡游"}
+                    ],
+                    "video": null,
+                    "related": {"heritageIds": ["h001"]}
+                }
+            ]
+        
+        media.json
+            [
+                {
+                    "id": "m001",
+                    "type": "image",
+                    "title": "古街夜景",
+                    "src": "/media/gallery/g001.webp",
+                    "alt": "古街夜景人流",
+                    "tags": ["夜景", "建筑"]
+                },
+                {
+                    "id": "m002",
+                    "type": "video",
+                    "title": "非遗工坊纪录",
+                    "src": "/media/video/v001.mp4",
+                    "poster": "/media/video/v001_poster.webp",
+                    "subtitles": "/media/video/v001.vtt",
+                    "tags": ["工艺", "纪录片"]
+                }
+            ]
+
+八、UI/交互与设计规范
+    品牌与视觉
+        色彩：主色 #1E6B5F（文化绿，示例），辅色 #C08A3E（金），中性色灰阶。
+        字体：中文系统字体优先，英文字体 Inter/Roboto 备用。
+        圆角与阴影：卡片 radius 12px；轻阴影用于悬浮感。
+    
+    组件库与样式
+        建议：Tailwind CSS（开发效率高）或 UnoCSS；无需引入重量级 UI 库。
+    
+    基础组件
+        Layout：Header/Nav、Footer、PageContainer
+        UI：Button、Tag、Badge、Card、Modal、Tabs、Accordion
+        媒体：ImageLazy、Lightbox、VideoPlayer
+        数据：SearchBox、Select/CheckboxGroup、Pagination/InfiniteList
+        地图（可选）：MapView、MapMarker
+    
+    交互细节
+        列表骨架屏；懒加载图片；滚动至顶部按钮。
+        键盘可访问性：Tab 顺序、Enter/Space 触发、ESC 关闭灯箱。
+        动效 ≤ 200ms，避免过度动画。
+    
+    空状态与错误
+        搜索无结果：展示引导文案与清空筛选按钮。
+        媒体加载失败：展示占位图与重试。视频提供备用文本。
+
+九、非功能与合规
+    性能
+        图片使用 WebP；提供必要的 JPEG/PNG 回退（可选）。
+        代码分割：按路由拆分；媒体相关组件懒加载。
+        预渲染/SSG（可选）：vite-plugin-ssg 或 prerender-spa-plugin。
+    
+    可访问性
+        对所有图片提供 alt 文本；对装饰性图片使用空 alt。
+        对视频提供字幕文件（vtt）与说明文案。
+        对比度符合 WCAG AA。
+    
+    SEO
+        每页唯一 title、meta description、OG 标签。
+        结构化数据：BreadcrumbList、Article（详情页）、Place（地图点位可选）。
+    
+    隐私与版权
+        明确素材来源与授权；不收集用户个人数据。
+        第三方字体/库遵循其许可。
+
+十、技术方案与目录结构
+    技术栈
+        Vue 3（Composition API, <script setup>），Vite，Vue Router，TypeScript（建议）
+        状态管理：Pinia（可选，用于搜索/筛选状态）
+        样式：Tailwind CSS 或 SCSS 模块
+        搜索：fuse.js
+        视频：Plyr.js（可选）
+        地图：Leaflet（可选）
+    
+    目录结构建议
+        /src
+            /assets
+            /components
+                /base (Button/Tag/Card/...)
+                /media (ImageLazy/Lightbox/VideoPlayer)
+                /map (MapView/MapMarker) # 可选
+            /composables (useSearch/useFilters/useMedia/useDarkMode)
+            /layouts (DefaultLayout.vue)
+            /pages
+                index.vue
+                culture.vue
+                customs/index.vue
+                customs/[id].vue
+                heritage/index.vue
+                heritage/[id].vue
+                media/index.vue
+                media/[id].vue
+                map.vue # 可选
+                about.vue
+            /router (index.ts)
+            /store (filters.ts, favorites.ts) # 可选
+            /styles (tailwind.css or globals.scss)
+            /utils (format.ts, seo.ts)
+        /public
+            /data (heritage.json, customs.json, media.json, tags.json, ...)
+            /media (images/videos)
+            /content (markdown)
+    
+    关键依赖
+        "vue": "^3.x"
+        "vue-router": "^4.x"
+        "pinia": "^2.x"（可选）
+        "fuse.js": "^6.x"
+        "plyr": "^3.x"（可选）
+        "leaflet": "^1.x"（可选）
+        "tailwindcss": "^3.x" 或 "sass": "^1.x"
+    
+    路由定义示例（TypeScript）
+        import { createRouter, createWebHistory } from 'vue-router'
+        const routes = [
+            { path: '/', component: () => import('@/pages/index.vue'), meta: { title: '首页' } },
+            { path: '/culture', component: () => import('@/pages/culture.vue'), meta: { title: '文化概况' } },
+            { path: '/customs', component: () => import('@/pages/customs/index.vue'), meta: { title: '风俗节庆' } },
+            { path: '/customs/:id', component: () => import('@/pages/customs/[id].vue'), meta: { title: '风俗详情' } },
+            { path: '/heritage', component: () => import('@/pages/heritage/index.vue'), meta: { title: '非遗名录' } },
+            { path: '/heritage/:id', component: () => import('@/pages/heritage/[id].vue'), meta: { title: '非遗详情' } },
+            { path: '/media', component: () => import('@/pages/media/index.vue'), meta: { title: '图文与视频' } },
+            { path: '/media/:id', component: () => import('@/pages/media/[id].vue'), meta: { title: '媒体详情' } },
+            { path: '/map', component: () => import('@/pages/map.vue'), meta: { title: '地图与路线' } },
+            { path: '/about', component: () => import('@/pages/about.vue'), meta: { title: '关于' } },
+            { path: '/:pathMatch(.)', redirect: '/' }
+        ]
+        export default createRouter({ history: createWebHistory(), routes })
+
+十一、构建与部署
+    开发
+        包管理：pnpm 或 npm/yarn
+        脚本
+            dev：vite
+            build：vite build
+            preview：vite preview
+            lint：eslint + prettier（可选）
+    
+    部署
+        纯静态托管：Vercel / Netlify / GitHub Pages / 阿里云 OSS
+        缓存：静态资源长缓存（含文件哈希），HTML 短缓存
+        CDN：建议对 /media/ 静态资源接入 CDN
+
+十二、测试与验收标准
+    功能测试
+        路由跳转无错误；返回/前进状态正确。
+        搜索/筛选在 heritage/customs/media 页面可用，刷新后状态还原（URL Query）。
+        图片懒加载；灯箱键盘 ESC 可关闭。
+        视频正常播放（海报、生效的控制条、倍速切换），字幕可开关。
+        可选地图：标注与弹窗正常，筛选可控。
+    
+    响应式
+        iPhone 12、iPad、1920x1080 桌面分别验证布局无错位。
+    
+    性能
+        首页与非遗列表页 Lighthouse ≥ 90（Performance/SEO/Accessibility）。
+        首屏 LCP ≤ 2.5s；资源按需加载。
+    
+    无障碍
+        alt、aria-label、键盘导航完整；对比度合规。
+    
+    SEO
+        Title/Description/OG 正确填充；结构化数据验证通过（Google Rich Results Test）。
+
+十三、项目计划与里程碑
+    M1（第1周）：架构搭建、路由/布局、样式系统、数据模型与示例数据。
+    M2（第2周）：非遗与风俗列表/详情、搜索筛选、媒体库与灯箱/视频。
+    M3（第3周）：地图（可选）、首页英雄位与精选模块、关于页、SEO与结构化数据。
+    M4（第4周）：性能优化、无障碍完善、内容填充、测试与部署。
+    交付物：源代码仓库、构建产物、数据包（/public/data, /media, /content）、操作说明（README）。
+
+十四、风险与缓解
+    素材体积大：采用 WebP、分辨率分级、懒加载、轻播放器；必要时分域名/CDN。
+    浏览器兼容：主流现代浏览器；对低版本提供基本回退（禁用动效、无地图）。
+    内容版权：在 About 页明示授权范围；引用第三方资源注明出处。
+
+十五、开发任务拆解（Issue 模板示例）
+    任务标题：[页面] 非遗列表与详情
+    需求要点
+        加载 /public/data/heritage.json
+        列表：搜索关键词、分类、地区、级别筛选；URL Query 同步
+        详情：markdown 渲染、图片灯箱、视频播放（字幕可选）
+    
+    验收标准
+        搜索"年画"可命中 h001
+        切换分类"传统手工艺"列表刷新且 URL 包含 category=craft
+        刷新后状态保持；详情页返回保留滚动位置
+    
+    技术说明
+        使用 fuse.js 基于 title/tags/summary 索引
+        markdown-it 渲染 descriptionMd
+        组件：Card、Tag、ImageLazy、Lightbox、VideoPlayer
+    
+    预估：8 人日
+
+十六、示例组件接口（简）
+    ImageLazy.vue
+        props: {
+            src: string,
+            alt: string,
+            width?: number,
+            height?: number,
+            aspect?: string,
+            class?: string
+        }
+    
+    VideoPlayer.vue
+        props: {
+            src: string,
+            poster?: string,
+            subtitles?: string,
+            autoplay?: boolean,
+            muted?: boolean,
+            controls?: boolean
+        }
+    
+    SearchBox.vue
+        props: {
+            modelValue: string,
+            placeholder?: string
+        }
+        emits: ['update:modelValue', 'submit', 'clear']
+    
+    FilterBar.vue
+        props: {
+            categories: string[],
+            regions: string[],
+            levels: string[]
+        }
+        emits: ['change']
+
+十七、SEO 与结构化数据示例
+    Head 管理：在路由 meta 中定义，统一在 App.vue 里设置
+    JSON-LD（非遗详情页）
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "CreativeWork",
+                "name": "XX木版年画",
+                "description": "源于明清的年画工艺……",
+                "keywords": "非遗,木版年画,传统手工艺",
+                "image": ["/media/heritage/h001/cover.webp"],
+                "spatialCoverage": {
+                    "@type": "Place",
+                    "name": "XX市XX区"
+                }
+            }
+        </script>
+
+十八、给 Cursor/Trae 的实施提示词（直接复制使用）
+    初始化项目
+        请用 Vue 3 + Vite + TypeScript 初始化项目，集成 Vue Router、Pinia（可选）、Tailwind CSS。创建上述目录结构与示例页面（index/culture/customs + detail/heritage + detail/media + detail/map/about）。配置路由懒加载与基础布局（含 Header/Footer）。
+    
+    数据与组件
+        在 /public/data 放入 heritage.json、customs.json、media.json 的示例结构与 3-5 条示例数据。
+        实现基础组件：Card、Tag、ImageLazy（IntersectionObserver 懒加载）、Lightbox（键盘可关闭）、VideoPlayer（支持 poster 与字幕）。
+        实现 SearchBox、FilterBar，并用 fuse.js 完成 heritage/customs/media 的本地搜索。
+    
+    页面逻辑
+        非遗列表页：关键词搜索 + 分类/地区/级别筛选；URL Query 同步；分页或无限滚动（二选一）。
+        非遗详情页：加载 markdown，渲染图片画廊与视频；related 区块展示关联风俗/媒体。
+        风俗列表/详情页同理；媒体页含图集与视频 Tab。
+    
+    SEO/性能
+        为主要页面添加动态 title/description、OG 标签；添加 JSON-LD 示例。
+        使用路由分包与图片懒加载；Lighthouse 分数 ≥ 90。
+    
+    可选功能
+        地图页：Leaflet 加载 heritage 的坐标点位；Marker 弹出卡片。
+        收藏：localStorage 收藏非遗/风俗条目；在首页入口展示"我的收藏"。
+
+十九、README 要点（交付时需包含）
+    项目介绍与功能预览
+    开发命令与环境要求
+    数据填充指南（如何新增/更新 JSON 与 Markdown）
+    媒体资源命名规范（snake_case / webp 优先）
+    性能与 SEO 优化说明
+    版权与使用许可声明
+
+二十、后续迭代建议（v1.1+）
+    国际化 i18n（中/英）
+    PWA 离线缓存与"展陈模式"（自动轮播）
+    更丰富的结构化数据类型（TouristAttraction、Event）
+    与地图路线规划集成（第三方 API）
